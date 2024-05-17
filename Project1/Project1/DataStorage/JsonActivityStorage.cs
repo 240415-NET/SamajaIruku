@@ -10,16 +10,16 @@ using Project1.Presentation;
 namespace Project1.DataStorage;
 
 
-    public class JsonActivityStorage : IActivityStorage
+public class JsonActivityStorage : IActivityStorage
 {
     public static string filePath = "./DataStorage/ActivityFile.json"; //file path to save the data
 
-    public  void StoreItem(ActivityModel  activityName)
+    public void StoreItem(ActivityModel ActivityName)
     {
         if (!File.Exists(filePath))
         {
-            List<ActivityModel>initialActivityList = new List<ActivityModel>();
-            initialActivityList.Add(activityName);
+            List<ActivityModel> initialActivityList = new List<ActivityModel>();
+            initialActivityList.Add(ActivityName);
             string jsonUsersString = JsonSerializer.Serialize(initialActivityList);
             File.WriteAllText(filePath, jsonUsersString);
         }
@@ -28,8 +28,8 @@ namespace Project1.DataStorage;
             string existingActivityJson = File.ReadAllText(filePath);
             List<ActivityModel> existingActivityList = JsonSerializer.Deserialize<List<ActivityModel>>(existingActivityJson);
 
-            existingActivityList.Add(activityName);
-            string jsonUserString = JsonSerializer.Serialize (existingActivityJson);
+            existingActivityList.Add(ActivityName);
+            string jsonUserString = JsonSerializer.Serialize(existingActivityJson);
             File.WriteAllText(filePath, jsonUserString);
 
         }
@@ -39,22 +39,25 @@ namespace Project1.DataStorage;
     {
         ActivityModel foundActivity = new ActivityModel(); //Initiating the user object
 
-        try{
+        try
+        {
 
             string existingActivityJson = File.ReadAllText(filePath);
             List<ActivityModel> existingActivityList = JsonSerializer.Deserialize<List<ActivityModel>>(existingActivityJson);
 
-            activityNameToFind = existingActivityList.FirstOrDefault(ActivityModel=>ActivityModel.activityName==activityNameToFind);
+            ActivityModel ExistingActivity = existingActivityList.FirstOrDefault(ActivityModel => ActivityModel.activityName == activityNameToFind);
+           // Item? itemToBeModified = allUsersItems.FirstOrDefault(x => x.itemId.Equals(itemId));
 
-
+        }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
-        
-        return foundUser;
+
+        return foundActivity;
 
     }
 
-   
+
 }
+

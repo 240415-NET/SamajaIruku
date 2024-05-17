@@ -4,7 +4,8 @@ namespace Project1.Models;
 
 public  interface IActivityStorage
 {
-    public ActivityModel StoreItem(ActivityModel  newActivity);
+    public ActivityModel FindActivity(string activityNameToFind);
+     public  void StoreItem(ActivityModel  ActivityName);
 
-    public void FindActivity(string activityNametoFind);
+    
 }

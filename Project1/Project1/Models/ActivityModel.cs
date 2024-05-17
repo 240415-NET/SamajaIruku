@@ -10,7 +10,7 @@ namespace Project1.Models;
 public  class ActivityModel
 {
      Guid activityId {get; set;}
-     string activityName {get; set;}
+     public string activityName {get; set;}
      Guid userid {get; set;}
      DateOnly date {get; set;}
      TimeOnly time {get; set;}
@@ -38,9 +38,9 @@ public  class ActivityModel
 
     }
 
-public override string ToString()
-    {
-        return $"Activity: {activityName}\nDate: {date}\nTime: {time}\nHow do you get there: {driverToActivity}";
-    }
+// public override string ToString()
+//     {
+//         return $"Activity: {activityName}\nDate: {date}\nTime: {time}\nHow do you get there: {driverToActivity}";
+//     }
 
 }
